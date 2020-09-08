@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using AdvertApi.Models;
 using AdvertApi.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace AdvertApi.Controllers
 {
@@ -12,10 +13,12 @@ namespace AdvertApi.Controllers
   public class AdvertController : ControllerBase
   {
     private readonly IAdvertStorageService _advertStorageService;
-    public AdvertController(IAdvertStorageService advertStorageService)
+    private readonly ILogger<AdvertController> _logger;
+
+    public AdvertController(IAdvertStorageService advertStorageService, ILogger<AdvertController> logger)
     {
       _advertStorageService = advertStorageService;
-
+      _logger = logger;
     }
 
     [HttpPost]
